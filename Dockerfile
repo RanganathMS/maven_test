@@ -2,7 +2,7 @@ FROM tomcat:latest
 
 LABEL maintainer="RanganathMS"
 
-ADD ./target/webapp.war /usr/local/tomcat/webapps/
+ADD ./webapp/target/webapp.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
