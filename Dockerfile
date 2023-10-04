@@ -2,9 +2,9 @@ FROM centos:7 as builder
 LABEL maintainer="HJ"
 WORKDIR /app/source
 COPY . /app/source
-RUN yum install -y curl
 RUN yum install -y maven && \
-    yum install -y java-1.8.0-openjdk && \  # Corrected Java installation command
+    yum install -y java-1.8.0-openjdk && \
+    yum install -y curl && \
     curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.80/bin/apache-tomcat-9.0.80.tar.gz && \
     tar -zvxf apache-tomcat-9.0.80.tar.gz
 RUN mvn clean package
