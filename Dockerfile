@@ -1,4 +1,4 @@
-FROM centos:7 as builder
+FROM centos:centos7 as builder
 LABEL maintainer="HJ"
 WORKDIR /app/source
 COPY . /app/source
@@ -10,7 +10,7 @@ RUN yum install -y maven && \
 RUN mvn clean package
 
 
-FROM centos:7
+FROM centos:centos7
 WORKDIR /app
 COPY --from=builder /app/source/webapp/target/webapp.war /app/
 EXPOSE 8080
