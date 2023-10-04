@@ -6,6 +6,6 @@ RUN yum install -y maven && yum install java-1.8* && wget https://dlcdn.apache.o
 RUN tar -zvxf apache-tomcat-9.0.55.tar.gz
 RUN mvn clean package
 FROM builder
-COPY --from=builder /app/source/webapp/target/webapp.war /app/source
+COPY --from=builder /webapp/target/webapp.war /app/source
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
