@@ -2,6 +2,8 @@ FROM tomcat:latest as builder
 RUN mkdir -p /app/source
 COPY . /app/source
 WORKDIR /app/source
+RUN yum install -y maven
+RUN chmod +x mvnw
 RUN ./mvnw clean package
 
 
