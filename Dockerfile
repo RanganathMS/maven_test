@@ -1,17 +1,11 @@
-FROM centos:centos7 as builder
-LABEL maintainer="HJ"
-WORKDIR /app/source
+FROM tomcat:latest as builder
+RUN mkdir -p /app/source
 COPY . /app/source
-RUN yum install -y maven && \
-    yum install -y java-1.8.0-openjdk && \
-    yum install -y curl && \
-    curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.80/bin/apache-tomcat-9.0.80.tar.gz && \
-    tar -zvxf apache-tomcat-9.0.80.tar.gz
-RUN mvn clean package
+WORKDIR /app/source
+RUN ./mvnw clean package
 
 
-FROM centos:centos7
-WORKDIR /app
-COPY --from=builder /app/source/webapp/target/webapp.war /app/
+FROM builder
+COPY --from=builder /app/source/target/*.war /app/webapp.war
 EXPOSE 8080
-CMD ["./apache-tomcat-9.0.80/bin/catalina.sh", "run"]
+CMD ["catalina.sh", "run" ]
