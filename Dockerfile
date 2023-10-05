@@ -1,13 +1,12 @@
-FROM tomcat:latest as builder
+FROM centos:8 as builder
+RUN yum install -y java-1.8.0-openjdk-devel maven
 RUN mkdir -p /app/source
 COPY . /app/source
 WORKDIR /app/source
-RUN yum install -y maven
-RUN chmod +x mvnw
-RUN ./mvnw clean package
+RUN mvn clean package
 
-
-FROM builder
-COPY --from=builder /app/source/target/*.war /app/webapp.war
+FROM tomcat:latest
+COPY --from=builder /app/source/target/*.war /usr/local/tomcat/webapps/webapp.war
 EXPOSE 8080
-CMD ["catalina.sh", "run" ]
+CMD ["catalina.sh", "run"]
+
