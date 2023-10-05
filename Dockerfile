@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y unzip && \
     ln -s /opt/sonar-scanner-3.0.3.778-linux/bin/sonar-scanner /usr/local/bin/sonar-scanner
 
 ENV SONAR_URL=http://65.0.7.97:9000 
-sonar.projectKey=webapp
+sonar.projectKey=maven_test
 sonar.projectName=webapp
 sonar.projectVersion=1.0
 sonar.sources=src
