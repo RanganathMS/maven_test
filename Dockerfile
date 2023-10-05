@@ -1,5 +1,4 @@
-FROM openjdk:8 as builder
-RUN yum update && yum install -y maven
+FROM maven:3-jdk-8 as builder
 RUN mkdir -p /app/source
 COPY . /app/source
 WORKDIR /app/source
