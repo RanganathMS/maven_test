@@ -1,4 +1,4 @@
-FROM centos:8 as builder
+FROM openjdk:8 as builder
 RUN yum install -y java-1.8.0-openjdk-devel
 RUN mkdir -p /app/source
 COPY . /app/source
