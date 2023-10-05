@@ -1,5 +1,5 @@
 FROM centos:8 as builder
-RUN yum install -y java-1.8.0-openjdk-devel maven
+RUN yum install -y java-1.8*
 RUN mkdir -p /app/source
 COPY . /app/source
 WORKDIR /app/source
