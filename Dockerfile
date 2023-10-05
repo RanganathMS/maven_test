@@ -1,4 +1,5 @@
 FROM openjdk:8 as builder
+RUN yum update && yum install -y maven
 RUN mkdir -p /app/source
 COPY . /app/source
 WORKDIR /app/source
